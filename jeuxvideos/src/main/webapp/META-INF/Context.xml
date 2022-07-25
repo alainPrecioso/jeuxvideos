@@ -3,7 +3,7 @@
     <Resource  name="jdbc/tp-servlet"  auth="Container"  type="javax.sql.DataSource"
               maxTotal="20"  maxIdle="10"  maxWaitMillis="100000"
               username="root"  password="databouteilleorange"  driverClassName="com.mysql.cj.jdbc.Driver"
-              url="jdbc:mysql://localhost/javaee"
+              url="jdbc:mysql://localhost/jeuxvideo"
               validationQuery="select 1"   testOnBorrow="true"/>
  </Context>
 
