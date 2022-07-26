@@ -12,7 +12,7 @@ public class Jeu implements Serializable {
 	private static final long serialVersionUID = 2528716634836196468L;
 	private String nom;
 	private String description;
-	private Double prix;
+	private String prix;
 	private LocalDate dateSortie;
 	private String pays;
 	private String connexion;
@@ -33,11 +33,11 @@ public class Jeu implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Double getPrix() {
+	public String getPrix() {
 		return prix;
 	}
-	public void setPrix(Double prix) {
-		this.prix = prix;
+	public void setPrix(String string) {
+		this.prix = string;
 	}
 	public LocalDate getDateSortie() {
 		return dateSortie;

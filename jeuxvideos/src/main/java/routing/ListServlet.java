@@ -1,6 +1,10 @@
 package routing;
 
 import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +13,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import sql.ConnexionFactory;
 
 /**
  * Servlet implementation class ListServlet
@@ -34,15 +38,30 @@ public class ListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		List<Jeu> list = new ArrayList<>();
-		Jeu jeu = new Jeu();
-		jeu.setNom("tetris");
-		jeu.setDescription("des briques tombent");
+		DecimalFormat df = new DecimalFormat("0.00");
+		try {
+			PreparedStatement ps = ConnexionFactory.getConnect()
+					.prepareStatement("SELECT * FROM `jeuxvideo`.`jeux`");
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			while (!rs.isAfterLast()) {
+				Jeu jeu = new Jeu();
+				jeu.setNom(rs.getString(2));
+				jeu.setDescription(rs.getString(3));
+				jeu.setPrix(df.format(rs.getFloat(4)));
+				list.add(jeu);
+				rs.next();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		Jeu jeu2 = new Jeu();
-		jeu2.setNom("mario");
-		jeu2.setDescription("casse des briques");
-		list.add(jeu);
-		list.add(jeu2);
+		
+		
+		
+		
+		
 		//HttpSession session = request.getSession();
 		//session.setAttribute("list", list);
 		request.setAttribute("list", list);

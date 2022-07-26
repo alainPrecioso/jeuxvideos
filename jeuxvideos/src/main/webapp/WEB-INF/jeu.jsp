@@ -7,7 +7,8 @@
     </h2>
     <div id="panelsStayOpen-collapse${i}" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading${i}">
       <div class="accordion-body">
-        Description : <c:out value="${jeu.description}" />
+        <p>Description : <c:out value="${jeu.description}" /></p>
+        <p>Prix : <c:out value="${jeu.prix}" />€</p>
       </div>
     </div>
   </div>
