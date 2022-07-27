@@ -1,6 +1,7 @@
 package beans;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -13,17 +14,26 @@ public class Jeu implements Serializable {
 	private String nom;
 	private String description;
 	private String prix;
-	private LocalDate dateSortie;
+	private Date dateSortie;
 	private String pays;
 	private String connexion;
 	private String mode;
 	private Integer genreKey;
 	private List<Integer> plateformeKey;
-	private String genreValue;
+	private Genre genre;
 	private List<String> plateformeValues;
+	
+	
 	public String getNom() {
 		return nom;
 	}
+	
+	public void addPlateforme(String str) {
+		this.plateformeValues.add(str);
+	}
+	
+	
+	
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
@@ -39,11 +49,11 @@ public class Jeu implements Serializable {
 	public void setPrix(String string) {
 		this.prix = string;
 	}
-	public LocalDate getDateSortie() {
+	public Date getDateSortie() {
 		return dateSortie;
 	}
-	public void setDateSortie(LocalDate dateSortie) {
-		this.dateSortie = dateSortie;
+	public void setDateSortie(Date date) {
+		this.dateSortie = date;
 	}
 	public String getPays() {
 		return pays;
@@ -75,11 +85,11 @@ public class Jeu implements Serializable {
 	public void setPlateformeKey(List<Integer> plateformeKey) {
 		this.plateformeKey = plateformeKey;
 	}
-	public String getGenreValue() {
-		return genreValue;
+	public Genre getGenre() {
+		return genre;
 	}
-	public void setGenreValue(String genreValue) {
-		this.genreValue = genreValue;
+	public void setGenreValue(Genre genre) {
+		this.genre = genre;
 	}
 	public List<String> getPlateformeValues() {
 		return plateformeValues;

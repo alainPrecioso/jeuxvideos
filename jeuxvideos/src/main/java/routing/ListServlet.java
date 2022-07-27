@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import beans.Jeu;
+import factories.JeuFactory;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -40,17 +41,22 @@ public class ListServlet extends HttpServlet {
 		List<Jeu> list = new ArrayList<>();
 		DecimalFormat df = new DecimalFormat("0.00");
 		try {
+//			PreparedStatement ps = ConnexionFactory.getConnect()
+//					.prepareStatement("SELECT * FROM `jeuxvideo`.`jeux`");
 			PreparedStatement ps = ConnexionFactory.getConnect()
-					.prepareStatement("SELECT * FROM `jeuxvideo`.`jeux`");
+					.prepareStatement("SELECT * FROM jeux j LEFT JOIN genre g\r\n"
+							+ "ON j.Genre_Id = g.Genre_Id\r\n"
+							+ "LEFT JOIN jeuxplateforme jp\r\n"
+							+ "ON j.Jeux_Id = jp.Jeux_Id\r\n"
+							+ "LEFT JOIN plateforme p\r\n"
+							+ "ON jp.Plateforme_Id = p.Plateforme_Id\r\n"
+							+ "ORDER BY j.Jeux_Id");
+			
 			ResultSet rs = ps.executeQuery();
 			rs.next();
+			
 			while (!rs.isAfterLast()) {
-				Jeu jeu = new Jeu();
-				jeu.setNom(rs.getString(2));
-				jeu.setDescription(rs.getString(3));
-				jeu.setPrix(df.format(rs.getFloat(4)));
-				list.add(jeu);
-				rs.next();
+				list.add(JeuFactory.getJeu(rs));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
