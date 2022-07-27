@@ -8,24 +8,24 @@ public class Platerformes implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1145773800165425292L;
-	// Création des classes suivis de la méthode getters et setters.
-	// Accessibilité de préférence en private.
-	private String Nom;
-	private String Description;
+	// Crï¿½ation des classes suivis de la mï¿½thode getters et setters.
+	// Accessibilitï¿½ de prï¿½fï¿½rence en private.
+	private String nom;
+	private String description;
 
 	public String getNom() {
-		return Nom;
+		return nom;
 	}
 
 	public void setNom(String nom) {
-		Nom = nom;
+		this.nom = nom;
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 }
