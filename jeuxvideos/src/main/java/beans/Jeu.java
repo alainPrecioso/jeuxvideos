@@ -22,6 +22,7 @@ public class Jeu implements Serializable {
 	private List<Integer> plateformeKey;
 	private Genre genre;
 	private List<String> plateformeValues;
+	private List<Plateforme> plateformes;
 	
 	
 	public String getNom() {
@@ -96,6 +97,18 @@ public class Jeu implements Serializable {
 	}
 	public void setPlateformeValues(List<String> plateformeValues) {
 		this.plateformeValues = plateformeValues;
+	}
+
+	public List<Plateforme> getPlateformes() {
+		return plateformes;
+	}
+
+	public void setPlateformes(List<Plateforme> plateformes) {
+		this.plateformes = plateformes;
+	}
+	
+	public void addPlateforme(Plateforme plateforme) {
+		plateformes.add(plateforme);
 	}
 	
 }

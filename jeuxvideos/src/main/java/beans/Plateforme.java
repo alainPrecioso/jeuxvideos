@@ -13,6 +13,11 @@ public class Plateforme implements Serializable {
 	private String nom;
 	private String description;
 	
+	public Plateforme(String nom, String description) {
+		this.nom = nom;
+		this.description = description;
+	}
+
 	public String getNom() {
 		return nom;
 	}

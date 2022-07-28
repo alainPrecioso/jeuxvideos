@@ -22,7 +22,8 @@
 				</p>
 				<p>
 					Sortie :
-					<c:out value="${jeu.dateSortie}" />
+					<%-- <c:out value="${jeu.dateSortie}" /> --%>
+					<fmt:formatDate dateStyle = "long" pattern = "dd MMMM yyyy"  value = "${jeu.dateSortie}" />
 				</p>
 				<p>
 					Pays :
@@ -42,8 +43,8 @@
 				</p>
 				<p>
 				 Plateforme(s) :
-				<c:forEach items="${jeu.plateformeValues}" var="pf">
-				<c:out value="${pf}" />
+				<c:forEach items="${jeu.plateformes}" var="pf">
+				<a href="#" rel="tooltip" title="${pf.description}"><c:out value="${pf.nom}" /></a>
 		</c:forEach>
 				</p>
 				

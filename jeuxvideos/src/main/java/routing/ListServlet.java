@@ -40,6 +40,15 @@ public class ListServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		List<Jeu> list = new ArrayList<>();
 		DecimalFormat df = new DecimalFormat("0.00");
+		
+		String genre = request.getParameter("genres");
+		String plateforme = request.getParameter("plateformes");
+		if (genre.equals("genre")) {
+			genre = "%";
+		}
+		if (plateforme.equals("plateforme")) {
+			plateforme = "%";
+		}
 		try {
 //			PreparedStatement ps = ConnexionFactory.getConnect()
 //					.prepareStatement("SELECT * FROM `jeuxvideo`.`jeux`");
@@ -50,10 +59,18 @@ public class ListServlet extends HttpServlet {
 							+ "ON j.Jeux_Id = jp.Jeux_Id\r\n"
 							+ "LEFT JOIN plateforme p\r\n"
 							+ "ON jp.Plateforme_Id = p.Plateforme_Id\r\n"
-							+ "ORDER BY j.Jeux_Id");
-			
+							+ "WHERE g.Genre_Titre LIKE ? && p.Plateforme_Nom LIKE ?\r\n"
+							+ "ORDER BY j.Jeux_Titre");
+			System.out.println(genre + " " + plateforme);
+			ps.setString(1, genre);
+			ps.setString(2, plateforme);
 			ResultSet rs = ps.executeQuery();
-			rs.next();
+			if (!rs.next()) {
+				request.setAttribute("result", "pas de résultats");
+				this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+				return;
+			}
+			
 			
 			while (!rs.isAfterLast()) {
 				list.add(JeuFactory.getJeu(rs));

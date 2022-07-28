@@ -8,12 +8,13 @@ import java.util.List;
 
 import beans.Genre;
 import beans.Jeu;
+import beans.Plateforme;
 
 public class JeuFactory {
 	
 	
 	public static Jeu getJeu(ResultSet rs) throws SQLException {
-		List<String> listpf = new ArrayList<>();
+		List<Plateforme> listpf = new ArrayList<>();
 		Integer trackID = rs.getInt(1);
 		DecimalFormat df = new DecimalFormat("0.00");
 		Jeu jeu = new Jeu();
@@ -25,10 +26,10 @@ public class JeuFactory {
 		jeu.setConnexion(rs.getString("Jeux_Connexion"));
 		jeu.setMode(rs.getString("Jeux_Mode"));
 		jeu.setGenreValue(new Genre(rs.getString("Genre_Titre"), rs.getString("Genre_Description")));
-		jeu.setPlateformeValues(listpf);
+		jeu.setPlateformes(listpf);
 		
 		while(trackID == rs.getInt(1) && rs.next()) {
-			jeu.addPlateforme(rs.getString("Plateforme_Nom"));
+			jeu.addPlateforme(new Plateforme(rs.getString("Plateforme_Nom"), rs.getString("Plateforme_Description")));
 		}
 		
 		return jeu;
