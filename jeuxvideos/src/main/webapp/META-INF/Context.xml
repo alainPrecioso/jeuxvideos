@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
-    <Resource  name="jdbc/tp-servlet"  auth="Container"  type="javax.sql.DataSource"
-              maxTotal="20"  maxIdle="10"  maxWaitMillis="100000"
-              username="root"  password="R@852203051819r"  driverClassName="com.mysql.cj.jdbc.Driver"
-              url="jdbc:mysql://localhost port:3306/jeuxvideo"
-              validationQuery="select 1"   testOnBorrow="true"/>
- </Context>
+	<Resource name="jdbc/tp-servlet" auth="Container"
+		type="javax.sql.DataSource" maxTotal="20" maxIdle="10"
+		maxWaitMillis="100000" username="root" password="R@852203051819r"
+		driverClassName="com.mysql.cj.jdbc.Driver"
+		url="jdbc:mysql://localhost port:3306/jeuxvideo"
+		validationQuery="select 1" testOnBorrow="true" />
+</Context>
 

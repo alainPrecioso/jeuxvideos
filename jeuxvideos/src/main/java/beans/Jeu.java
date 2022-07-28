@@ -1,6 +1,7 @@
 package beans;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -12,18 +13,28 @@ public class Jeu implements Serializable {
 	private static final long serialVersionUID = 2528716634836196468L;
 	private String nom;
 	private String description;
-	private Double prix;
-	private LocalDate dateSortie;
+	private String prix;
+	private Date dateSortie;
 	private String pays;
 	private String connexion;
 	private String mode;
 	private Integer genreKey;
 	private List<Integer> plateformeKey;
-	private String genreValue;
+	private Genre genre;
 	private List<String> plateformeValues;
+	private List<Plateforme> plateformes;
+	
+	
 	public String getNom() {
 		return nom;
 	}
+	
+	public void addPlateforme(String str) {
+		this.plateformeValues.add(str);
+	}
+	
+	
+	
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
@@ -33,17 +44,17 @@ public class Jeu implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Double getPrix() {
+	public String getPrix() {
 		return prix;
 	}
-	public void setPrix(Double prix) {
-		this.prix = prix;
+	public void setPrix(String string) {
+		this.prix = string;
 	}
-	public LocalDate getDateSortie() {
+	public Date getDateSortie() {
 		return dateSortie;
 	}
-	public void setDateSortie(LocalDate dateSortie) {
-		this.dateSortie = dateSortie;
+	public void setDateSortie(Date date) {
+		this.dateSortie = date;
 	}
 	public String getPays() {
 		return pays;
@@ -75,17 +86,29 @@ public class Jeu implements Serializable {
 	public void setPlateformeKey(List<Integer> plateformeKey) {
 		this.plateformeKey = plateformeKey;
 	}
-	public String getGenreValue() {
-		return genreValue;
+	public Genre getGenre() {
+		return genre;
 	}
-	public void setGenreValue(String genreValue) {
-		this.genreValue = genreValue;
+	public void setGenreValue(Genre genre) {
+		this.genre = genre;
 	}
 	public List<String> getPlateformeValues() {
 		return plateformeValues;
 	}
 	public void setPlateformeValues(List<String> plateformeValues) {
 		this.plateformeValues = plateformeValues;
+	}
+
+	public List<Plateforme> getPlateformes() {
+		return plateformes;
+	}
+
+	public void setPlateformes(List<Plateforme> plateformes) {
+		this.plateformes = plateformes;
+	}
+	
+	public void addPlateforme(Plateforme plateforme) {
+		plateformes.add(plateforme);
 	}
 	
 }
