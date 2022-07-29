@@ -20,7 +20,15 @@
 			$("[rel='tooltip']").tooltip();
 		});
 	</script>
+	<script>const myModal = document.getElementById('myModal')
+	const myInput = document.getElementById('myInput')
 
+	myModal.addEventListener('shown.bs.modal', () => {
+	  myInput.focus()
+	})
+</script>
+<c:set var="genres" value="${requestScope.genres}" scope="request" />
+<c:set var="plateformes" value="${requestScope.plateformes}" scope="request" />
 	<c:if test="${empty requestScope.list }">
 		<c:if test="${!empty requestScope.result }">
 			<p>
@@ -28,9 +36,9 @@
 			</p>
 		</c:if>
 		<form action="list" method="post">
+			<input type="text" name="search">
 
-
-			<select name="genres" id="genres">
+			<%-- <select name="genres" id="genres">
 				<option value="genre">Genre</option>
 				<c:forEach items="${requestScope.genres}" var="genre">
 					<option value="${genre.nom}"><c:out value="${genre.nom}" /></option>
@@ -41,7 +49,11 @@
 					<option value="${plateforme.nom}"><c:out
 							value="${plateforme.nom}" /></option>
 				</c:forEach>
-			</select>
+			</select> --%>
+
+			<a href="#" rel="tooltip" title="genre:&quot; &quot;&#13g:&quot; &quot;&#13<c:forEach items="${requestScope.genres}" var="genre"><c:out value="${genre.nom}" />&#13</c:forEach>">Genres</a>
+			
+			<a href="#" rel="tooltip" title="plateforme:&quot; &quot;&#13pf:&quot; &quot;&#13<c:forEach items="${requestScope.plateformes}" var="plateforme"><c:out value="${plateforme.nom}" />&#13</c:forEach>">Plateformes</a>
 
 			<button type="submit">Chercher</button>
 
@@ -60,6 +72,7 @@
 			<c:forEach items="${requestScope.list}" var="jeu">
 				<c:set var="i" value="${i+1}" scope="request" />
 				<c:set var="jeu" value="${jeu}" scope="request" />
+				<c:set var="jeumodif" value="${jeu}" scope="request" />
 				<c:import url="WEB-INF/jeu.jsp"></c:import>
 
 			</c:forEach>

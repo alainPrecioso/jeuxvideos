@@ -14,6 +14,9 @@ public class JeuFactory {
 	
 	
 	public static Jeu getJeu(ResultSet rs) throws SQLException {
+		if (rs.isBeforeFirst()) {
+			rs.next();
+		}
 		List<Plateforme> listpf = new ArrayList<>();
 		Integer trackID = rs.getInt(1);
 		DecimalFormat df = new DecimalFormat("0.00");
