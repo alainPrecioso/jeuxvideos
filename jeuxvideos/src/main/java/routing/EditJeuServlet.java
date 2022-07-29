@@ -40,9 +40,19 @@ public class EditJeuServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		List<Jeu> list = new ArrayList<>();
 		try {
 			System.out.println(request.getParameter("genre"));
+			System.out.println(request.getParameter("nom"));
 			PreparedStatement ps = ConnexionFactory.getConnect()
 					.prepareStatement("SELECT * FROM genre WHERE Genre_Titre = ?");
 			ps.setString(1, request.getParameter("genre"));
@@ -59,7 +69,7 @@ public class EditJeuServlet extends HttpServlet {
 							+ "Jeux_DateSortie = ?, Genre_Id = ? WHERE  Jeux_Titre = ?");
 			
 			ps.setString(1, request.getParameter("description"));
-			ps.setFloat(2, Float.parseFloat(request.getParameter("prix")));
+			ps.setFloat(2, Float.parseFloat(request.getParameter("prix").replace(",", ".")));
 			ps.setDate(3, Date.valueOf(request.getParameter("dateSortie")));
 			ps.setInt(4, genreKey);
 			ps.setString(5, request.getParameter("nom"));
@@ -93,16 +103,6 @@ public class EditJeuServlet extends HttpServlet {
 		request.setAttribute("list", list);
 		
 		this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-		
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		doGet(request, response);
 	}
 
 }

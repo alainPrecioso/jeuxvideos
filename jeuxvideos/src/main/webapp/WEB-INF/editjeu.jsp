@@ -1,3 +1,4 @@
+	 <form method="post" action="editjeu" id="form${i}">
 	 <input type="hidden" name="nom" value="${jeumodif.nom}">
 	<p>
 		Description :
@@ -25,7 +26,7 @@
 		<c:out value="${jeumodif.mode}" />
 	</p>
 	<p>
-		Genre : <select name="genres" id="genres">
+		Genre : <select name="genre" id="genres">
 				<option value="">Genre</option>
 				<c:forEach items="${requestScope.genres}" var="genre">
 					<option value="${genre.nom}" <c:if test="${genre.nom == jeumodif.genre.nom}">selected="selected"</c:if>><c:out value="${genre.nom}" /></option>
@@ -40,7 +41,7 @@
 		</c:forEach>
 		</select>
 	</p>
-	
+	</form>
 	
 
 	

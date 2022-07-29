@@ -79,14 +79,13 @@
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-				<form method="post" action="editjeu">
+				
 					<c:import url="WEB-INF/editjeu.jsp"></c:import>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-bs-dismiss="modal">Close</button>
-					<button type="submit" class="btn btn-primary">Modifier</button>
-					</form>
+					<button form="form${i}" type="submit" class="btn btn-primary">Modifier</button>
 				</div>
 			</div>
 		</div>
