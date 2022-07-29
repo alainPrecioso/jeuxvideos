@@ -51,8 +51,6 @@ public class EditJeuServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		List<Jeu> list = new ArrayList<>();
 		try {
-			System.out.println(request.getParameter("genre"));
-			System.out.println(request.getParameter("nom"));
 			PreparedStatement ps = ConnexionFactory.getConnect()
 					.prepareStatement("SELECT * FROM genre WHERE Genre_Titre = ?");
 			ps.setString(1, request.getParameter("genre"));
