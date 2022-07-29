@@ -27,8 +27,9 @@
 	  myInput.focus()
 	})
 </script>
-<c:set var="genres" value="${requestScope.genres}" scope="request" />
-<c:set var="plateformes" value="${requestScope.plateformes}" scope="request" />
+<div>
+			<a href="index.jsp"><h1>Home</h1></a>
+		</div>
 	<c:if test="${empty requestScope.list }">
 		<c:if test="${!empty requestScope.result }">
 			<p>
@@ -50,13 +51,9 @@
 							value="${plateforme.nom}" /></option>
 				</c:forEach>
 			</select> --%>
-
-			<a href="#" rel="tooltip" title="genre:&quot; &quot;&#13g:&quot; &quot;&#13<c:forEach items="${requestScope.genres}" var="genre"><c:out value="${genre.nom}" />&#13</c:forEach>">Genres</a>
-			
-			<a href="#" rel="tooltip" title="plateforme:&quot; &quot;&#13pf:&quot; &quot;&#13<c:forEach items="${requestScope.plateformes}" var="plateforme"><c:out value="${plateforme.nom}" />&#13</c:forEach>">Plateformes</a>
-
+		
 			<button type="submit">Chercher</button>
-
+			<c:import url="WEB-INF/searchtags.jsp"></c:import>
 
 		</form>
 	</c:if>

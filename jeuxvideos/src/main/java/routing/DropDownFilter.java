@@ -9,6 +9,8 @@ import java.util.List;
 
 import beans.Genre;
 import beans.Plateforme;
+import factories.GenresFactory;
+import factories.PlateformesFactory;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
@@ -51,33 +53,8 @@ public class DropDownFilter extends HttpServlet implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		// place your code here
-		List<Genre> genres = new ArrayList<>();
-		List<Plateforme> plateformes = new ArrayList<>();
-		PreparedStatement ps;
-		try {
-			ps = ConnexionFactory.getConnect().prepareStatement("SELECT * FROM genre");
-			ResultSet rs = ps.executeQuery();
-			while (rs.next()) {
-				genres.add(new Genre(rs.getString(2), rs.getString(3)));
-			}
-
-		
-			ps = ConnexionFactory.getConnect().prepareStatement("SELECT * FROM plateforme");
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				plateformes.add(new Plateforme(rs.getString(2), rs.getString(3)));
-			}
-
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		((HttpServletRequest) request).setAttribute("genres", genres);
-		((HttpServletRequest) request).setAttribute("plateformes", plateformes);
+		((HttpServletRequest) request).setAttribute("genres", GenresFactory.getGenres());
+		((HttpServletRequest) request).setAttribute("plateformes", PlateformesFactory.getPlateformes());
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
 	}
